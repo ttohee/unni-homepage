@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import banner_img from "../assets/banner-img.svg";
 import Navbar from "../components/Navbar";
-import Intro from "../components/Intro";
+import Intro from "../components/parts/Intro";
 
 const Landingpage = () => {
   return (
