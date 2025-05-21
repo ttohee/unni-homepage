@@ -15,9 +15,7 @@ const Intro = () => {
 
       <Section>
         <Subject>
-          <ImgContainer>
-            <img src={subject_img} />
-          </ImgContainer>
+          <ImgContainer src={subject_img} />
           <InfoContainer>
             <TextContainer>
               <BigText>따뜻한 진료</BigText>
@@ -31,16 +29,14 @@ const Intro = () => {
           <InfoContainer>
             <TextContainer>
               <BigText>전문성을 갖춘 의료진</BigText>
-              <p style={{ wordBreak: "keep-all" }}>
+              <p>
                 다년간의 진료 경험을 지닌 산부인과 여의사 서백경 선생님이
                 진료합니다.
               </p>
             </TextContainer>
             <Button text="의료진 소개 보러가기" />
           </InfoContainer>
-          <ImgContainer>
-            <img src={doctor_img} />
-          </ImgContainer>
+          <ImgContainer src={doctor_img} />
         </Subject>
       </Section>
     </Container>
@@ -50,45 +46,43 @@ const Intro = () => {
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   color: ${theme.color.gray1};
   gap: 20px;
+  word-break: keep-all;
 `;
 const InfoContainer = styled.div`
   display: flex;
+  max-width: 500px;
+  flex: 1;
   flex-direction: column;
   gap: 40px;
 `;
 const BigText = styled.h4`
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
   color: black;
 `;
-const ImgContainer = styled.div`
-  width: 540px;
-  height: 380px;
+const ImgContainer = styled.img`
+  flex: 1;
+  max-width: 520px;
   border: none;
   border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  object-fit: cover;
 `;
 const Subject = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   width: 100%;
-  gap: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10%;
 `;
 const Section = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 80px;
-  align-items: flex-start;
 `;
 
 const Title = styled.div`
@@ -118,7 +112,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 140px;
+  gap: 200px;
 `;
 
 export default Intro;

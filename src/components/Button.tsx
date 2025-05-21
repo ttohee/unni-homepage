@@ -14,12 +14,12 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 36px;
+  padding: 14px 30px;
   border: none;
   border-radius: 10px;
   background-color: ${theme.color.main[2]};
   color: white;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
 `;
 

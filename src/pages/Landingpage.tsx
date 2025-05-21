@@ -2,12 +2,12 @@ import styled from "styled-components";
 import banner_img from "../assets/banner-img.svg";
 import Navbar from "../components/Navbar";
 import Intro from "../components/parts/Intro";
+import Directions from "../components/parts/Directions";
+import VisualFooter from "../components/parts/VisualFooter";
 
 const Landingpage = () => {
   return (
     <Container>
-      <Navbar />
-
       <Banner>
         <Title>
           <p>YS Unni Women’s Clinic</p>
@@ -17,6 +17,10 @@ const Landingpage = () => {
       </Banner>
 
       <Intro />
+
+      <Directions />
+
+      <VisualFooter />
     </Container>
   );
 };
@@ -44,7 +48,7 @@ const Banner = styled.div`
   padding: 0 300px;
   display: flex;
   align-items: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)),
     url(${banner_img});
   background-size: cover;
   background-position: center;
@@ -54,6 +58,7 @@ const Container = styled.section`
   width: 100vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export default Landingpage;
