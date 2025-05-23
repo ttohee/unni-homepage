@@ -7,13 +7,29 @@ import parking from "../../assets/parking.svg";
 import wifi from "../../assets/wifi.svg";
 import toilet from "../../assets/toilet.svg";
 import disabled from "../../assets/disabled.svg";
+import { useEffect } from "react";
 
-const Directions = () => {
+function Directions() {
+  useEffect(() => {
+    const center = new naver.maps.LatLng(36.352744, 127.343028);
+    const mapElement = document.getElementById("map");
+    if (mapElement) {
+      const map = new naver.maps.Map(mapElement, {
+        center,
+        zoom: 16,
+      });
+      new naver.maps.Marker({
+        position: center,
+        map: map,
+      });
+    }
+  }, []);
+
   return (
     <Container>
       <Section>
         <Title>오시는길</Title>
-        <Map></Map>
+        <Map id="map" />
         <Addrs>
           <p>유성언니여성의원</p>
           <PinkText>
@@ -69,7 +85,7 @@ const Directions = () => {
       </Section>
     </Container>
   );
-};
+}
 
 const Wrap = styled.div`
   display: flex;

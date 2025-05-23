@@ -30,6 +30,10 @@ const Items = styled.div`
   font-size: 20px;
   font-weight: 500;
   color: white;
+  p {
+    :hover {
+    }
+  }
 `;
 const Title = styled.p`
   font-size: 22px;
