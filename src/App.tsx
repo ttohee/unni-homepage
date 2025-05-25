@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Routes, Outlet } from "react-router-dom";
 import Landingpage from "./pages/Landingpage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Clinics from "./pages/Clinics";
 
 function Layout() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Landingpage />} />
+          <Route path="/clinics" element={<Clinics />} />
         </Route>
       </Routes>
     </BrowserRouter>
