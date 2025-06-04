@@ -35,13 +35,16 @@ const Navbar = () => {
 
   return (
     <Nav $isVisible={isVisible} $isScrolled={isScrolled}>
-      <Logo>
-        <img src={isScrolled ? logoBlack : logo} alt="logo" />
-        <div>
-          <Title>유성언니여성의원</Title>
-          <p>YS Unni Women's Clinic</p>
-        </div>
-      </Logo>
+      <Link to={"/"} style={{ textDecoration: "none" }}>
+        <Logo>
+          <img src={isScrolled ? logoBlack : logo} alt="logo" />
+          <div>
+            <Title>유성언니여성의원</Title>
+            <p>YS Unni Women's Clinic</p>
+          </div>
+        </Logo>
+      </Link>
+
       <Items>
         <Link to={"/"} style={{ textDecoration: "none" }}>
           <p>홈</p>

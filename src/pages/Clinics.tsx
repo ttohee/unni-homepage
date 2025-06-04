@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import banner_img from "../assets/banner-img.svg";
 import { theme } from "../styles/theme";
+import obgyn_img from "../assets/obgyn img.svg";
 
 const Clinics = () => {
   return (
@@ -29,7 +30,7 @@ const Clinics = () => {
                 여성성형 <sub>(레이저 꽃잎성형/소음순 비대증/여성포경술)</sub>
               </li>
             </List>
-            <img src=/>
+            <img src={obgyn_img} />
           </Content>
         </Box>
       </Section>

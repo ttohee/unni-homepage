@@ -11,20 +11,15 @@ import { useEffect } from "react";
 
 function Directions() {
   useEffect(() => {
-    const center = new naver.maps.LatLng(36.352744, 127.343028);
-    const mapElement = document.getElementById("map");
-    if (mapElement) {
-      const map = new naver.maps.Map(mapElement, {
-        center,
-        zoom: 16,
-      });
-      new naver.maps.Marker({
-        position: center,
-        map: map,
-      });
-    }
-  }, []);
+    if (!window.naver || !window.naver.maps) return;
 
+    const mapOptions = {
+      center: new window.naver.maps.LatLng(36.352744, 127.343028),
+      zoom: 10,
+    };
+
+    new window.naver.maps.Map("map", mapOptions);
+  }, []);
   return (
     <Container>
       <Section>

@@ -3,6 +3,7 @@ import { theme } from "../../styles/theme";
 import subject_img from "../../assets/subject-img.svg";
 import doctor_img from "../../assets/doctor.svg";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 const Intro = () => {
   return (
@@ -21,7 +22,9 @@ const Intro = () => {
               <BigText>따뜻한 진료</BigText>
               <p>작은 언니같은 따뜻한 마음으로 진료하겠습니다. </p>
             </TextContainer>
-            <Button text="진료 과목 보러가기" />
+            <Link to={"/clinics"}>
+              <Button text="진료 과목 보러가기" />
+            </Link>
           </InfoContainer>
         </Subject>
 
