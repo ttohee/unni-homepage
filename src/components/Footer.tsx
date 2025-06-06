@@ -20,16 +20,25 @@ const Footer = () => {
               </TextContainer>
             </Logo>
             <InfoContainer>
-              <p>대표자명 : 서백경 | 사업자등록번호 : 000-00-00000</p>
-              <p>연락처 : 042-719-8375 | 이메일 : unni@example.com</p>
+              <p>대표자명 : 서백경 | 사업자등록번호 : 371-16-01372</p>
+              <p>연락처 : 042-719-8375 | 이메일 : happyofwomen78@naver.com</p>
               <p>주소 : 대전광역시 유성구 계룡로 114, 202호</p>
             </InfoContainer>
           </Information>
 
           <SNSLink>
-            <img src={naver_cafe} />
+            <a>
+              <img src={naver_cafe} />
+            </a>
+
             <img src={dot} />
-            <img src={insta} />
+
+            <a
+              href="https://www.instagram.com/unniwomenclinic?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              target="blank"
+            >
+              <img src={insta} />
+            </a>
           </SNSLink>
         </TopPart>
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import logo from "../assets/ysunni-logo-white.svg";
-import logoBlack from "../assets/ysunni-logo-black.svg"; // 검은색 로고 필요
+import logoBlack from "../assets/ysunni-logo-black.svg";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <Nav $isVisible={isVisible} $isScrolled={isScrolled}>
       <Link to={"/"} style={{ textDecoration: "none" }}>
-        <Logo>
+        <Logo $isScrolled={isScrolled}>
           <img src={isScrolled ? logoBlack : logo} alt="logo" />
           <div>
             <Title>유성언니여성의원</Title>
@@ -45,7 +45,7 @@ const Navbar = () => {
         </Logo>
       </Link>
 
-      <Items>
+      <Items $isScrolled={isScrolled}>
         <Link to={"/"} style={{ textDecoration: "none" }}>
           <p>홈</p>
         </Link>
@@ -54,8 +54,9 @@ const Navbar = () => {
           <p>진료 과목</p>
         </Link>
 
-        <p>의료진 소개</p>
-        <p>오시는길</p>
+        <Link to={"/staff"}>
+          <p>의료진 소개</p>
+        </Link>
       </Items>
     </Nav>
   );
@@ -70,11 +71,19 @@ const Items = styled.div`
 
   p {
     cursor: pointer;
-    transition: opacity 0.3s ease;
-    color: white;
+    transition: all 0.3s ease;
+    color: ${(props) => (props.$isScrolled ? "#000" : "#fff")};
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    p {
+      color: ${(props) => (props.$isScrolled ? "#000" : "#fff")};
     }
   }
 `;
@@ -89,6 +98,7 @@ const Logo = styled.div`
   align-items: center;
   font-size: 14px;
   font-weight: 500;
+  color: ${(props) => (props.$isScrolled ? "#000" : "#fff")};
 
   img {
     width: 52px;
@@ -116,14 +126,6 @@ const Nav = styled.nav`
   transition: all 0.3s ease;
   box-shadow: ${(props) =>
     props.$isScrolled ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none"};
-
-  ${Items} {
-    color: ${(props) => (props.$isScrolled ? "#000" : "#fff")};
-  }
-
-  ${Logo} {
-    color: ${(props) => (props.$isScrolled ? "#000" : "#fff")};
-  }
 `;
 
 export default Navbar;

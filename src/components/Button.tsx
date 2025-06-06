@@ -21,6 +21,7 @@ const StyledButton = styled.button`
   color: white;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export default Button;

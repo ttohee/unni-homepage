@@ -22,7 +22,7 @@ const Intro = () => {
               <BigText>따뜻한 진료</BigText>
               <p>작은 언니같은 따뜻한 마음으로 진료하겠습니다. </p>
             </TextContainer>
-            <Link to={"/clinics"}>
+            <Link to={"/clinics"} style={{ textDecoration: "none" }}>
               <Button text="진료 과목 보러가기" />
             </Link>
           </InfoContainer>
@@ -37,7 +37,9 @@ const Intro = () => {
                 진료합니다.
               </p>
             </TextContainer>
-            <Button text="의료진 소개 보러가기" />
+            <Link to={""} style={{ textDecoration: "none" }}>
+              <Button text="의료진 소개 보러가기" />
+            </Link>
           </InfoContainer>
           <ImgContainer src={doctor_img} />
         </Subject>

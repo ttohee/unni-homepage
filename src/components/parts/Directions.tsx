@@ -13,13 +13,48 @@ function Directions() {
   useEffect(() => {
     if (!window.naver || !window.naver.maps) return;
 
+    const position = new window.naver.maps.LatLng(36.352744, 127.343028);
+
     const mapOptions = {
-      center: new window.naver.maps.LatLng(36.352744, 127.343028),
-      zoom: 10,
+      center: position,
+      zoom: 17,
+      minZoom: 8,
+      zoomControl: true,
+      zoomControlOptions: {
+        position: window.naver.maps.Position.TOP_RIGHT,
+      },
     };
 
-    new window.naver.maps.Map("map", mapOptions);
+    const map = new window.naver.maps.Map("map", mapOptions);
+    var marker = new naver.maps.Marker({
+      position: position,
+      map: map,
+    });
+
+    const contentString = [
+      '<div class="iw_inner" style="padding:5px; margin: 5px 0px 5px 0px; width: 150px; height: 45px; text-align: center; ">',
+      '   <p style="foint-size: 2rem; margin: 0;">유성언니여성의원</p>',
+      '   <p style="font-size: 0.8rem; margin: 0;">유성온천역 1번출구 <br> 2분거리 위치 BYC건물 2층</p>',
+      "</div>",
+    ].join("");
+    const infowindow = new naver.maps.InfoWindow({
+      content: contentString,
+      maxWidth: 200,
+      backgroundColor: "white",
+      borderColor: "black",
+      borderWidth: 2,
+      disableAnchor: true,
+      pixelOffset: new naver.maps.Point(0, -5),
+    });
+    naver.maps.Event.addListener(marker, "mouseover", function (e) {
+      infowindow.open(map, marker);
+    });
+
+    naver.maps.Event.addListener(marker, "mouseout", function (e) {
+      infowindow.close();
+    });
   }, []);
+
   return (
     <Container>
       <Section>
@@ -31,6 +66,7 @@ function Directions() {
             대전광역시 유성구 계룡로 114(유성BYC빌딩) 2층, 유성언니여성의원
           </PinkText>
         </Addrs>
+
         <Information>
           <InfoTitle>
             <img src={map_pin} alt="" />
@@ -57,22 +93,19 @@ function Directions() {
           </InfoTitle>
           <Amenities>
             <Wrap>
-              <img src={parking} />
+              <img src={parking} alt="무료 주차" />
               <p>무료 주차</p>
             </Wrap>
-
             <Wrap>
-              <img src={wifi} />
+              <img src={wifi} alt="와이파이" />
               <p>와이파이</p>
             </Wrap>
-
             <Wrap>
-              <img src={toilet} />
+              <img src={toilet} alt="화장실" />
               <p>화장실</p>
             </Wrap>
-
             <Wrap>
-              <img src={disabled} />
+              <img src={disabled} alt="장애인 편의시설" />
               <p>장애인 편의시설</p>
             </Wrap>
           </Amenities>
@@ -82,35 +115,60 @@ function Directions() {
   );
 }
 
-const Wrap = styled.div`
+// Styled Components
+const Container = styled.div`
+  padding: 145px 314px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Section = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+`;
+
+const Title = styled.div`
+  width: 100%;
+  padding-bottom: 20px;
+  font-size: 20px;
   font-weight: 600;
-  img {
-    width: 52px;
-    height: 52px;
-  }
-`;
-const Amenities = styled.div`
+  color: black;
   display: flex;
-  flex-direction: row;
-  gap: 52px;
+  justify-content: flex-start;
+  border-bottom: 1px solid ${theme.color.gray1};
+  margin-bottom: 44px;
 `;
-const SmallText = styled.div`
+
+const Map = styled.div`
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 10px;
+  background-color: gainsboro;
+`;
+
+const Addrs = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-`;
-const InfoTitle = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+  align-items: flex-start;
+  padding: 52px 40px;
   font-size: 20px;
-  font-weight: 500;
-  color: black;
+  font-weight: 400;
+  color: ${theme.color.gray1};
+  gap: 20px;
 `;
+
+const PinkText = styled.h4`
+  font-size: 32px;
+  font-weight: 500;
+  color: ${theme.color.main[1]};
+`;
+
 const Information = styled.div`
   width: 100%;
   padding: 52px 40px;
@@ -123,6 +181,7 @@ const Information = styled.div`
   font-weight: 400;
   color: ${theme.color.gray1};
 `;
+
 const AmenityInfo = styled.div`
   width: 100%;
   padding: 50px 40px;
@@ -135,52 +194,39 @@ const AmenityInfo = styled.div`
   font-weight: 400;
   color: ${theme.color.gray1};
 `;
-const PinkText = styled.h4`
-  font-size: 32px;
-  font-weight: 500;
-  color: ${theme.color.main[1]};
-`;
-const Addrs = styled.div`
-  width: 100%;
+
+const InfoTitle = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 52px 40px;
-  font-size: 20px;
-  font-weight: 400;
-  color: ${theme.color.gray1};
+  flex-direction: row;
   gap: 20px;
-`;
-const Map = styled.div`
-  width: 100%;
-  height: 400px;
-  border: none;
-  border-radius: 10px;
-  background-color: gainsboro;
-`;
-const Title = styled.div`
-  width: 100%;
-  padding-bottom: 20px;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   color: black;
-  display: flex;
-  justify-content: flex-start;
-  border-bottom: 1px solid ${theme.color.gray1};
-  margin-bottom: 44px;
 `;
-const Section = styled.section`
-  width: 100%;
+
+const SmallText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const Amenities = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 52px;
+`;
+
+const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-const Container = styled.div`
-  padding: 145px 314px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 4px;
+  font-weight: 600;
+
+  img {
+    width: 52px;
+    height: 52px;
+  }
 `;
 
 export default Directions;

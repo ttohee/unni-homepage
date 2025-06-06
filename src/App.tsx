@@ -4,6 +4,7 @@ import Landingpage from "./pages/Landingpage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Clinics from "./pages/Clinics";
+import MedicalStaff from "./pages/MedicalStaff";
 
 function Layout() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Landingpage />} />
           <Route path="/clinics" element={<Clinics />} />
+          <Route path="/staff" element={<MedicalStaff />} />
         </Route>
       </Routes>
     </BrowserRouter>
