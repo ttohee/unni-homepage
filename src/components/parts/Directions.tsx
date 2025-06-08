@@ -122,6 +122,18 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 1200px) {
+    padding: 120px 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 80px 40px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 60px 20px;
+  }
 `;
 
 const Section = styled.section`
@@ -141,6 +153,18 @@ const Title = styled.div`
   justify-content: flex-start;
   border-bottom: 1px solid ${theme.color.gray1};
   margin-bottom: 44px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
 `;
 
 const Map = styled.div`
@@ -149,6 +173,16 @@ const Map = styled.div`
   border: none;
   border-radius: 10px;
   background-color: gainsboro;
+
+  @media (max-width: 768px) {
+    height: 300px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 480px) {
+    height: 250px;
+    border-radius: 6px;
+  }
 `;
 
 const Addrs = styled.div`
@@ -161,12 +195,34 @@ const Addrs = styled.div`
   font-weight: 400;
   color: ${theme.color.gray1};
   gap: 20px;
+
+  @media (max-width: 768px) {
+    padding: 40px 30px;
+    font-size: 18px;
+    gap: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 20px;
+    font-size: 16px;
+    gap: 12px;
+  }
 `;
 
 const PinkText = styled.h4`
   font-size: 32px;
   font-weight: 500;
   color: ${theme.color.main[1]};
+  word-break: keep-all;
+  line-height: 1.4;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 
 const Information = styled.div`
@@ -180,6 +236,20 @@ const Information = styled.div`
   font-size: 20px;
   font-weight: 400;
   color: ${theme.color.gray1};
+
+  @media (max-width: 768px) {
+    padding: 40px 30px;
+    gap: 30px;
+    font-size: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 20px;
+    gap: 20px;
+    font-size: 16px;
+  }
 `;
 
 const AmenityInfo = styled.div`
@@ -193,27 +263,89 @@ const AmenityInfo = styled.div`
   font-size: 20px;
   font-weight: 400;
   color: ${theme.color.gray1};
+
+  @media (max-width: 768px) {
+    padding: 40px 30px;
+    gap: 30px;
+    font-size: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 20px;
+    gap: 20px;
+    font-size: 16px;
+  }
 `;
 
 const InfoTitle = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 20px;
   font-size: 20px;
   font-weight: 500;
   color: black;
+  min-width: 150px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    gap: 15px;
+    min-width: auto;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    gap: 12px;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
 `;
 
 const SmallText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  word-break: keep-all;
+  line-height: 1.5;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
 `;
 
 const Amenities = styled.div`
   display: flex;
   flex-direction: row;
   gap: 52px;
+
+  @media (max-width: 768px) {
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 480px) {
+    gap: 20px;
+    justify-content: space-between;
+  }
 `;
 
 const Wrap = styled.div`
@@ -222,10 +354,41 @@ const Wrap = styled.div`
   align-items: center;
   gap: 4px;
   font-weight: 600;
+  text-align: center;
 
   img {
     width: 52px;
     height: 52px;
+  }
+
+  p {
+    word-break: keep-all;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex: 1;
+    min-width: 80px;
+
+    img {
+      width: 36px;
+      height: 36px;
+    }
+
+    p {
+      font-size: 11px;
+    }
   }
 `;
 

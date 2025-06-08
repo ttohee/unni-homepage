@@ -111,6 +111,18 @@ const TextContainer = styled.div`
   color: ${theme.color.gray1};
   gap: 20px;
   word-break: keep-all;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    gap: 15px;
+    align-items: center;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    gap: 12px;
+    align-items: center;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -119,12 +131,31 @@ const InfoContainer = styled.div`
   flex: 1;
   flex-direction: column;
   gap: 40px;
+
+  @media (max-width: 768px) {
+    gap: 30px;
+    max-width: 100%;
+    align-items: center;
+  }
+
+  @media (max-width: 480px) {
+    gap: 20px;
+    align-items: center;
+  }
 `;
 
 const BigText = styled.h4`
   font-size: 28px;
   font-weight: 600;
   color: black;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 
 const ImgContainer = styled.img`
@@ -133,6 +164,22 @@ const ImgContainer = styled.img`
   border: none;
   border-radius: 20px;
   object-fit: cover;
+
+  @media (max-width: 1024px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
+  }
+
+  @media (max-width: 480px) {
+    height: 200px;
+    border-radius: 10px;
+  }
 `;
 
 const Subject = styled.div<SubjectProps>`
@@ -152,6 +199,23 @@ const Subject = styled.div<SubjectProps>`
     }}
   );
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+  @media (max-width: 1024px) {
+    gap: 5%;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+
+    transform: translateX(0)
+      translateY(${(props) => (props.$isvisible ? "0px" : "50px")});
+  }
+
+  @media (max-width: 480px) {
+    gap: 20px;
+  }
 `;
 
 const Section = styled.section`
@@ -159,6 +223,14 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   gap: 80px;
+
+  @media (max-width: 768px) {
+    gap: 60px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 40px;
+  }
 `;
 
 const Title = styled.div<TitleProps>`
@@ -169,10 +241,22 @@ const Title = styled.div<TitleProps>`
   gap: 12px;
   font-size: 28px;
   font-weight: 600;
+  text-align: center;
 
   opacity: ${(props) => (props.$isvisible ? 1 : 0)};
   transform: translateY(${(props) => (props.$isvisible ? "0px" : "50px")});
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    gap: 10px;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    gap: 8px;
+  }
 `;
 
 const MainTitle = styled.p`
@@ -180,6 +264,14 @@ const MainTitle = styled.p`
   font-weight: 700;
   color: ${theme.color.main[2]};
   letter-spacing: normal;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
 `;
 
 const Phrase = styled.p`
@@ -187,6 +279,14 @@ const Phrase = styled.p`
   font-weight: lighter;
   font-size: 28px;
   letter-spacing: normal;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 
 const Container = styled.section`
@@ -196,6 +296,21 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 200px;
+
+  @media (max-width: 1200px) {
+    padding: 120px 100px;
+    gap: 150px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 80px 40px;
+    gap: 100px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 60px 20px;
+    gap: 80px;
+  }
 `;
 
 export default Intro;

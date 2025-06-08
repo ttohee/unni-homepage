@@ -22,41 +22,42 @@ const MedicalStaff = () => {
 
         if (rect.top < windowHeight * 0.9 && rect.bottom > 0) {
           setVisibleItems((prev) => {
+            if (prev.has(index)) {
+              return prev; // 이미 존재하면 기존 Set 반환 (불필요한 리렌더링 방지)
+            }
             const newSet = new Set([...prev, index]);
             return newSet;
           });
         }
       });
-
-      if (visibleItems.size >= 13) {
-        window.removeEventListener("scroll", handleScroll);
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
+    handleScroll(); // 초기 로드 시에도 실행
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [visibleItems]);
+  }, []); // 의존성 배열을 빈 배열로 변경
 
   return (
     <Container>
       <Banner>
         <TextContainer>
-          <p>의료진 소개</p>
+          <BannerTitle>의료진 소개</BannerTitle>
           <Phrase>" 작은 언니같은 따뜻한 마음으로 진료하겠습니다. "</Phrase>
           <Hr />
         </TextContainer>
       </Banner>
       <Section>
         <Wrap>
-          <img src={doctor_full} alt="서백경 원장" />
+          <ImageContainer>
+            <img src={doctor_full} alt="서백경 원장" />
+          </ImageContainer>
           <TextSection>
             <Title>
               <Name>서백경 원장</Name>
-              <span>언니여성의원 대표원장</span>
+              <Position>언니여성의원 대표원장</Position>
             </Title>
             <Vita>
               <PinkText>약력</PinkText>
@@ -171,56 +172,101 @@ const FadeInItem = styled.li<FadeInItemProps>`
   transform: translateY(${(props) => (props.isvisible ? "0" : "20px")});
   transition: opacity 0.6s ease-out ${(props) => props.delay}ms,
     transform 0.6s ease-out ${(props) => props.delay}ms;
+  font-size: clamp(20px, 2.5vw, 24px);
+  line-height: 1.4;
+  font-weight: 300;
+  word-break: keep-all;
 `;
 
 const List = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(8px, 1.5vw, 16px);
   list-style: none;
+  padding: 0;
+  margin: 0;
 `;
 
 const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 52px;
+  gap: clamp(24px, 4vw, 52px);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: clamp(32px, 5vw, 80px);
+
+    ${List} {
+      flex: 1;
+    }
+  }
 `;
 
 const PinkText = styled.h2`
-  font-size: 28px;
+  font-size: clamp(20px, 3vw, 28px);
   font-weight: 500;
   color: ${theme.color.main[1]};
+  margin: 0;
 `;
 
 const Vita = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  font-size: 28px;
-  font-weight: 300;
+  gap: clamp(8px, 1.5vw, 12px);
   color: black;
 `;
 
 const Title = styled.div`
   display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  font-size: 24px;
-  color: ${theme.color.gray1};
-  font-weight: 400;
-  padding-bottom: 24px;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vw, 12px);
+  padding-bottom: clamp(16px, 2.5vw, 24px);
   border-bottom: 2px solid ${theme.color.gray1};
 
-  span {
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+`;
+
+const Position = styled.span`
+  font-size: clamp(16px, 2.5vw, 24px);
+  color: ${theme.color.gray1};
+  font-weight: 400;
+
+  @media (min-width: 768px) {
     margin-bottom: 6px;
   }
 `;
 
 const Name = styled.h1`
-  font-size: 40px;
+  font-size: clamp(28px, 4vw, 40px);
   font-family: GowunBatang;
   font-weight: lighter;
   color: black;
+  margin: 0;
+`;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (min-width: 768px) {
+    max-width: none;
+    flex: 0 0 40%;
+    margin: 0;
+  }
+
+  @media (min-width: 1200px) {
+    flex: 0 0 35%;
+  }
 `;
 
 const TextSection = styled.div`
@@ -229,44 +275,71 @@ const TextSection = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 52px;
-  padding-top: 20px;
+  gap: clamp(24px, 4vw, 52px);
+  padding-top: clamp(16px, 2.5vw, 20px);
+
+  @media (min-width: 768px) {
+    flex: 1;
+  }
 `;
 
 const Wrap = styled.div`
   width: 100%;
+  max-width: 1200px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 8%;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 32px);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: clamp(32px, 5vw, 80px);
+  }
 `;
 
 const Section = styled.section`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 160px 10%;
+  padding: clamp(60px, 10vw, 160px) clamp(20px, 5vw, 10%);
 `;
 
 const Hr = styled.hr`
-  width: 70vw;
+  width: min(70vw, 400px);
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+
+  @media (min-width: 768px) {
+    width: min(70vw, 500px);
+  }
 `;
 
 const Phrase = styled.h3`
-  font-size: 28px;
+  font-size: clamp(18px, 3vw, 28px);
   font-family: "GowunBatang";
   font-weight: lighter;
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
+  padding: 0 20px;
+`;
+
+const BannerTitle = styled.p`
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 600;
+  margin: 0;
 `;
 
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: clamp(16px, 3vw, 24px);
   align-items: center;
   color: white;
-  font-size: 36px;
-  font-weight: 600;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 800px;
 
   animation: slide_up 1s ease-out;
 
@@ -283,8 +356,8 @@ const TextContainer = styled.div`
 `;
 
 const Banner = styled.div`
-  width: 100vw;
-  height: 80vh;
+  width: 100%;
+  height: clamp(60vh, 80vh, 90vh);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -293,12 +366,18 @@ const Banner = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+  }
 `;
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 `;
 
 export default MedicalStaff;
