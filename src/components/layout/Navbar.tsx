@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import logo from "../assets/ysunni-logo-white.svg";
-import logoBlack from "../assets/ysunni-logo-black.svg";
+import logo from "../../assets/ysunni-logo-white.svg";
+import logoBlack from "../../assets/ysunni-logo-black.svg";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {

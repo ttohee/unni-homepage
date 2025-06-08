@@ -4,19 +4,61 @@ import subject_img from "../../assets/subject-img.svg";
 import doctor_img from "../../assets/doctor.svg";
 import Button from "../Button";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 const Intro = () => {
+  const [titleVisible, setTitleVisible] = useState(false);
+  const [firstSubjectVisible, setFirstSubjectVisible] = useState(false);
+  const [secondSubjectVisible, setSecondSubjectVisible] = useState(false);
+
+  const titleRef = useRef(null);
+  const firstSubjectRef = useRef(null);
+  const secondSubjectRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "-50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === titleRef.current) {
+            setTitleVisible(true);
+          } else if (entry.target === firstSubjectRef.current) {
+            setFirstSubjectVisible(true);
+          } else if (entry.target === secondSubjectRef.current) {
+            setSecondSubjectVisible(true);
+          }
+        }
+      });
+    }, observerOptions);
+
+    if (titleRef.current) observer.observe(titleRef.current);
+    if (firstSubjectRef.current) observer.observe(firstSubjectRef.current);
+    if (secondSubjectRef.current) observer.observe(secondSubjectRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <Container>
-      <Title>
+      <Title ref={titleRef} $isvisible={titleVisible}>
         <Phrase>함께 건강한 병원, 사귀고 돌보는 병원</Phrase>
-        <p>YS Unni Women’s Clinic</p>
+        <p>YS Unni Women's Clinic</p>
         <MainTitle>유성언니여성의원</MainTitle>
       </Title>
 
       <Section>
-        <Subject>
-          <ImgContainer src={subject_img} />
+        <Subject
+          ref={firstSubjectRef}
+          $isvisible={firstSubjectVisible}
+          $direction="left"
+        >
+          <ImgContainer src={subject_img} alt="환자 진료 이미지" />
           <InfoContainer>
             <TextContainer>
               <BigText>따뜻한 진료</BigText>
@@ -28,7 +70,11 @@ const Intro = () => {
           </InfoContainer>
         </Subject>
 
-        <Subject>
+        <Subject
+          ref={secondSubjectRef}
+          $isvisible={secondSubjectVisible}
+          $direction="right"
+        >
           <InfoContainer>
             <TextContainer>
               <BigText>전문성을 갖춘 의료진</BigText>
@@ -37,11 +83,11 @@ const Intro = () => {
                 진료합니다.
               </p>
             </TextContainer>
-            <Link to={""} style={{ textDecoration: "none" }}>
+            <Link to={"/staff"} style={{ textDecoration: "none" }}>
               <Button text="의료진 소개 보러가기" />
             </Link>
           </InfoContainer>
-          <ImgContainer src={doctor_img} />
+          <ImgContainer src={doctor_img} alt="의료진 이미지" />
         </Subject>
       </Section>
     </Container>
@@ -57,6 +103,7 @@ const TextContainer = styled.div`
   gap: 20px;
   word-break: keep-all;
 `;
+
 const InfoContainer = styled.div`
   display: flex;
   max-width: 500px;
@@ -64,11 +111,13 @@ const InfoContainer = styled.div`
   flex-direction: column;
   gap: 40px;
 `;
+
 const BigText = styled.h4`
   font-size: 28px;
   font-weight: 600;
   color: black;
 `;
+
 const ImgContainer = styled.img`
   flex: 1;
   max-width: 520px;
@@ -76,13 +125,26 @@ const ImgContainer = styled.img`
   border-radius: 20px;
   object-fit: cover;
 `;
+
 const Subject = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10%;
+
+  opacity: ${(props) => (props.$isvisible ? 1 : 0)};
+  transform: translateX(
+    ${(props) => {
+      if (!props.$isvisible) {
+        return props.$direction === "left" ? "-100px" : "100px";
+      }
+      return "0px";
+    }}
+  );
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 `;
+
 const Section = styled.section`
   width: 100%;
   display: flex;
@@ -98,19 +160,26 @@ const Title = styled.div`
   gap: 12px;
   font-size: 28px;
   font-weight: 600;
+
+  opacity: ${(props) => (props.$isvisible ? 1 : 0)};
+  transform: translateY(${(props) => (props.$isvisible ? "0px" : "50px")});
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 `;
+
 const MainTitle = styled.p`
   font-size: 44px;
   font-weight: 700;
   color: ${theme.color.main[2]};
   letter-spacing: normal;
 `;
+
 const Phrase = styled.p`
   font-family: "GowunBatang";
   font-weight: lighter;
   font-size: 28px;
   letter-spacing: normal;
 `;
+
 const Container = styled.section`
   width: 100vw;
   padding: 145px 314px;

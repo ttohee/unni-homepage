@@ -145,9 +145,34 @@ const Box = styled.div`
   flex-direction: column;
   gap: 36px;
   align-items: flex-start;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   img {
     border-radius: 20px;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08);
+    animation: hover-glow 0.3s ease-out;
+  }
+
+  @keyframes hover-glow {
+    0% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+    50% {
+      transform: scale(1.01);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    100% {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
   }
 `;
 const Section = styled.section`
@@ -174,6 +199,19 @@ const TextContainer = styled.div`
   color: white;
   font-size: 36px;
   font-weight: 600;
+
+  animation: slide_up 1s ease-out;
+
+  @keyframes slide_up {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 const Banner = styled.div`
   width: 100vw;

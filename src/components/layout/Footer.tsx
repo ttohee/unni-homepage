@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { theme } from "../styles/theme";
-import logo_gray from "../assets/ysunni-logo-gray.svg";
-import naver_cafe from "../assets/naver-cafe.svg";
-import insta from "../assets/insta.svg";
-import dot from "../assets/dot.svg";
-import copyright from "../assets/copyright.svg";
+import { theme } from "../../styles/theme";
+import logo_gray from "../../assets/ysunni-logo-gray.svg";
+import naver_cafe from "../../assets/naver-cafe.svg";
+import insta from "../../assets/insta.svg";
+import dot from "../../assets/dot.svg";
+import copyright from "../../assets/copyright.svg";
 
 const Footer = () => {
   return (
@@ -27,7 +27,7 @@ const Footer = () => {
           </Information>
 
           <SNSLink>
-            <a>
+            <a href="https://blog.naver.com/happyofwomen78" target="blank">
               <img src={naver_cafe} />
             </a>
 

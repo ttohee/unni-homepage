@@ -32,6 +32,19 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: 600;
   letter-spacing: 2px;
+
+  animation: slide_up 1s ease-out;
+
+  @keyframes slide_up {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 const MainTitle = styled.p`
   font-size: 44px;
