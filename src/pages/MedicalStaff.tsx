@@ -5,8 +5,13 @@ import VisualFooter from "../components/parts/VisualFooter";
 import { theme } from "../styles/theme";
 import { useEffect, useState } from "react";
 
+interface FadeInItemProps {
+  isvisible: boolean;
+  delay: number;
+}
+
 const MedicalStaff = () => {
-  const [visibleItems, setVisibleItems] = useState(new Set());
+  const [visibleItems, setVisibleItems] = useState(new Set<number>());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,7 +20,7 @@ const MedicalStaff = () => {
         const rect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        if (rect.top < windowHeight && rect.bottom > 0) {
+        if (rect.top < windowHeight * 0.9 && rect.bottom > 0) {
           setVisibleItems((prev) => {
             const newSet = new Set([...prev, index]);
             return newSet;
@@ -41,13 +46,13 @@ const MedicalStaff = () => {
       <Banner>
         <TextContainer>
           <p>의료진 소개</p>
-          <Phrase>“ 작은 언니같은 따뜻한 마음으로 진료하겠습니다. “</Phrase>
+          <Phrase>" 작은 언니같은 따뜻한 마음으로 진료하겠습니다. "</Phrase>
           <Hr />
         </TextContainer>
       </Banner>
       <Section>
         <Wrap>
-          <img src={doctor_full} />
+          <img src={doctor_full} alt="서백경 원장" />
           <TextSection>
             <Title>
               <Name>서백경 원장</Name>
@@ -161,28 +166,32 @@ const MedicalStaff = () => {
   );
 };
 
-const FadeInItem = styled.li`
+const FadeInItem = styled.li<FadeInItemProps>`
   opacity: ${(props) => (props.isvisible ? 1 : 0)};
   transform: translateY(${(props) => (props.isvisible ? "0" : "20px")});
   transition: opacity 0.6s ease-out ${(props) => props.delay}ms,
     transform 0.6s ease-out ${(props) => props.delay}ms;
 `;
+
 const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
   list-style: none;
 `;
+
 const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 52px;
 `;
+
 const PinkText = styled.h2`
   font-size: 28px;
   font-weight: 500;
   color: ${theme.color.main[1]};
 `;
+
 const Vita = styled.div`
   display: flex;
   flex-direction: column;
@@ -191,6 +200,7 @@ const Vita = styled.div`
   font-weight: 300;
   color: black;
 `;
+
 const Title = styled.div`
   display: flex;
   align-items: flex-end;
@@ -205,12 +215,14 @@ const Title = styled.div`
     margin-bottom: 6px;
   }
 `;
+
 const Name = styled.h1`
   font-size: 40px;
   font-family: GowunBatang;
   font-weight: lighter;
   color: black;
 `;
+
 const TextSection = styled.div`
   width: 100%;
   display: flex;
@@ -220,6 +232,7 @@ const TextSection = styled.div`
   gap: 52px;
   padding-top: 20px;
 `;
+
 const Wrap = styled.div`
   width: 100%;
   display: flex;
@@ -227,6 +240,7 @@ const Wrap = styled.div`
   justify-content: space-between;
   gap: 8%;
 `;
+
 const Section = styled.section`
   width: 100vw;
   display: flex;
@@ -234,14 +248,17 @@ const Section = styled.section`
   align-items: center;
   padding: 160px 10%;
 `;
+
 const Hr = styled.hr`
   width: 70vw;
 `;
+
 const Phrase = styled.h3`
   font-size: 28px;
   font-family: "GowunBatang";
   font-weight: lighter;
 `;
+
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -264,6 +281,7 @@ const TextContainer = styled.div`
     }
   }
 `;
+
 const Banner = styled.div`
   width: 100vw;
   height: 80vh;
@@ -276,6 +294,7 @@ const Banner = styled.div`
   background-position: center;
   background-size: cover;
 `;
+
 const Container = styled.div`
   width: 100vw;
   display: flex;

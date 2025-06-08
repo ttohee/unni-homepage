@@ -4,6 +4,19 @@ import logo from "../../assets/ysunni-logo-white.svg";
 import logoBlack from "../../assets/ysunni-logo-black.svg";
 import { Link } from "react-router-dom";
 
+interface NavProps {
+  $isVisible: boolean;
+  $isScrolled: boolean;
+}
+
+interface LogoProps {
+  $isScrolled: boolean;
+}
+
+interface ItemsProps {
+  $isScrolled: boolean;
+}
+
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,26 +48,21 @@ const Navbar = () => {
 
   return (
     <Nav $isVisible={isVisible} $isScrolled={isScrolled}>
-      <Link to={"/"} style={{ textDecoration: "none" }}>
-        <Logo $isScrolled={isScrolled}>
-          <img src={isScrolled ? logoBlack : logo} alt="logo" />
-          <div>
-            <Title>유성언니여성의원</Title>
-            <p>YS Unni Women's Clinic</p>
-          </div>
-        </Logo>
-      </Link>
+      <Logo $isScrolled={isScrolled}>
+        <img src={isScrolled ? logoBlack : logo} alt="YS Unni Logo" />
+        <Title>YS Unni Women's Clinic</Title>
+      </Logo>
 
       <Items $isScrolled={isScrolled}>
-        <Link to={"/"} style={{ textDecoration: "none" }}>
+        <Link to="/">
           <p>홈</p>
         </Link>
 
-        <Link to={"/clinics"} style={{ textDecoration: "none" }}>
+        <Link to="/services">
           <p>진료 과목</p>
         </Link>
 
-        <Link to={"/staff"}>
+        <Link to="/medical-staff">
           <p>의료진 소개</p>
         </Link>
       </Items>
@@ -62,7 +70,43 @@ const Navbar = () => {
   );
 };
 
-const Items = styled.div`
+const Nav = styled.nav<NavProps>`
+  width: 100vw;
+  height: 112px;
+  border-bottom: 1px solid
+    ${(props) => (props.$isScrolled ? "#e0e0e0" : "white")};
+  background: ${(props) =>
+    props.$isScrolled ? "rgba(255, 255, 255, 0.95)" : "transparent"};
+  backdrop-filter: ${(props) => (props.$isScrolled ? "blur(10px)" : "none")};
+  position: fixed;
+  top: ${(props) => (props.$isVisible ? "0" : "-112px")};
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 300px;
+  transition: all 0.3s ease;
+  box-shadow: ${(props) =>
+    props.$isScrolled ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none"};
+`;
+
+const Logo = styled.div<LogoProps>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props) => (props.$isScrolled ? "#000" : "#fff")};
+
+  img {
+    width: 52px;
+    height: 52px;
+    transition: all 0.3s ease;
+  }
+`;
+
+const Items = styled.div<ItemsProps>`
   display: flex;
   flex-direction: row;
   gap: 80px;
@@ -90,42 +134,6 @@ const Items = styled.div`
 
 const Title = styled.p`
   font-size: 22px;
-`;
-
-const Logo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 500;
-  color: ${(props) => (props.$isScrolled ? "#000" : "#fff")};
-
-  img {
-    width: 52px;
-    height: 52px;
-    transition: all 0.3s ease;
-  }
-`;
-
-const Nav = styled.nav`
-  width: 100vw;
-  height: 112px;
-  border-bottom: 1px solid
-    ${(props) => (props.$isScrolled ? "#e0e0e0" : "white")};
-  background: ${(props) =>
-    props.$isScrolled ? "rgba(255, 255, 255, 0.95)" : "transparent"};
-  backdrop-filter: ${(props) => (props.$isScrolled ? "blur(10px)" : "none")};
-  position: fixed;
-  top: ${(props) => (props.$isVisible ? "0" : "-112px")};
-  z-index: 10;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 300px;
-  transition: all 0.3s ease;
-  box-shadow: ${(props) =>
-    props.$isScrolled ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none"};
 `;
 
 export default Navbar;

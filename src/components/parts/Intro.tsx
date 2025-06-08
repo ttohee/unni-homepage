@@ -6,14 +6,23 @@ import Button from "../Button";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
+interface TitleProps {
+  $isvisible: boolean;
+}
+
+interface SubjectProps {
+  $isvisible: boolean;
+  $direction: "left" | "right";
+}
+
 const Intro = () => {
   const [titleVisible, setTitleVisible] = useState(false);
   const [firstSubjectVisible, setFirstSubjectVisible] = useState(false);
   const [secondSubjectVisible, setSecondSubjectVisible] = useState(false);
 
-  const titleRef = useRef(null);
-  const firstSubjectRef = useRef(null);
-  const secondSubjectRef = useRef(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const firstSubjectRef = useRef<HTMLDivElement>(null);
+  const secondSubjectRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -126,7 +135,7 @@ const ImgContainer = styled.img`
   object-fit: cover;
 `;
 
-const Subject = styled.div`
+const Subject = styled.div<SubjectProps>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -152,7 +161,7 @@ const Section = styled.section`
   gap: 80px;
 `;
 
-const Title = styled.div`
+const Title = styled.div<TitleProps>`
   display: flex;
   flex-direction: column;
   align-items: center;

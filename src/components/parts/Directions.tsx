@@ -46,11 +46,11 @@ function Directions() {
       disableAnchor: true,
       pixelOffset: new naver.maps.Point(0, -5),
     });
-    naver.maps.Event.addListener(marker, "mouseover", function (e) {
+    naver.maps.Event.addListener(marker, "mouseover", function () {
       infowindow.open(map, marker);
     });
 
-    naver.maps.Event.addListener(marker, "mouseout", function (e) {
+    naver.maps.Event.addListener(marker, "mouseout", function () {
       infowindow.close();
     });
   }, []);
