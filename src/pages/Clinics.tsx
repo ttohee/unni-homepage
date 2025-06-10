@@ -7,6 +7,7 @@ import VisualFooter from "../components/parts/VisualFooter";
 import health_img from "../assets/health img.svg";
 import lgbt_img from "../assets/lgbtq_img.svg";
 import international_img from "../assets/international_img.svg";
+import { Helmet } from "react-helmet";
 
 // styled-components props 타입 정의
 interface BoxProps {
@@ -48,109 +49,114 @@ const Clinics = () => {
   };
 
   return (
-    <Container>
-      <Banner>
-        <TextContainer>
-          <BannerTitle>진료 과목 소개</BannerTitle>
-          <Phrase>" 작은 언니같은 따뜻한 마음으로 진료하겠습니다. "</Phrase>
-          <Hr />
-        </TextContainer>
-      </Banner>
-      <Section>
-        <Box
-          ref={(el) => setBoxRef(el, 0)}
-          data-index="0"
-          $isVisible={visibleBoxes.has(0)}
-          $direction="right"
-        >
-          <Title>산부인과 클리닉</Title>
-          <PinkHr />
-          <Content>
-            <List>
-              <li>산전/산후검사</li>
-              <li>난임</li>
-              <li>피임</li>
-              <li>폐경</li>
-              <li>생리불순</li>
-              <li>질염</li>
-              <li>만성가려움</li>
-              <li>
-                여성성형 <sub>(레이저 꽃잎성형/소음순 비대증/여성포경술)</sub>
-              </li>
-            </List>
-            <img src={obgyn_img} alt="산부인과" />
-          </Content>
-        </Box>
+    <>
+      <Helmet>
+        <title>진료 과목 소개 | 유성언니여성의원</title>
+      </Helmet>
+      <Container>
+        <Banner>
+          <TextContainer>
+            <BannerTitle>진료 과목 소개</BannerTitle>
+            <Phrase>" 작은 언니같은 따뜻한 마음으로 진료하겠습니다. "</Phrase>
+            <Hr />
+          </TextContainer>
+        </Banner>
+        <Section>
+          <Box
+            ref={(el) => setBoxRef(el, 0)}
+            data-index="0"
+            $isVisible={visibleBoxes.has(0)}
+            $direction="right"
+          >
+            <Title>산부인과 클리닉</Title>
+            <PinkHr />
+            <Content>
+              <List>
+                <li>산전/산후검사</li>
+                <li>난임</li>
+                <li>피임</li>
+                <li>폐경</li>
+                <li>생리불순</li>
+                <li>질염</li>
+                <li>만성가려움</li>
+                <li>
+                  여성성형 <sub>(레이저 꽃잎성형/소음순 비대증/여성포경술)</sub>
+                </li>
+              </List>
+              <img src={obgyn_img} alt="산부인과" />
+            </Content>
+          </Box>
 
-        <Box
-          ref={(el) => setBoxRef(el, 1)}
-          data-index="1"
-          $isVisible={visibleBoxes.has(1)}
-          $direction="left"
-        >
-          <Title>건강증진클리닉</Title>
-          <PinkHr />
-          <LeftContent>
-            <img src={health_img} alt="건강증진" />
-            <List>
-              <li>여성암검진</li>
-              <li>공단 자궁암검진 무료</li>
-              <li>웨딩검진</li>
-              <li>예방접종</li>
-              <li>항노화클리닉</li>
-            </List>
-          </LeftContent>
-        </Box>
+          <Box
+            ref={(el) => setBoxRef(el, 1)}
+            data-index="1"
+            $isVisible={visibleBoxes.has(1)}
+            $direction="left"
+          >
+            <Title>건강증진클리닉</Title>
+            <PinkHr />
+            <LeftContent>
+              <img src={health_img} alt="건강증진" />
+              <List>
+                <li>여성암검진</li>
+                <li>공단 자궁암검진 무료</li>
+                <li>웨딩검진</li>
+                <li>예방접종</li>
+                <li>항노화클리닉</li>
+              </List>
+            </LeftContent>
+          </Box>
 
-        <Box
-          ref={(el) => setBoxRef(el, 2)}
-          data-index="2"
-          $isVisible={visibleBoxes.has(2)}
-          $direction="right"
-        >
-          <Title>성소수자 클리닉</Title>
-          <PinkHr />
-          <Content>
-            <List>
-              <LongLi>
-                유성언니여성의원 성소수자 클리닉은 트랜스젠더 및 성소수자 분들을
-                위한 전문 진료를 제공합니다.{" "}
-              </LongLi>
-              <LongLi>
-                주로 호르몬 치료, 관련 혈액검사 모니터링, 상담을 통해 안전하고
-                지속 가능한 건강관리를 지원합니다.
-              </LongLi>
-            </List>
-            <img src={lgbt_img} alt="성소수자" />
-          </Content>
-        </Box>
+          <Box
+            ref={(el) => setBoxRef(el, 2)}
+            data-index="2"
+            $isVisible={visibleBoxes.has(2)}
+            $direction="right"
+          >
+            <Title>성소수자 클리닉</Title>
+            <PinkHr />
+            <Content>
+              <List>
+                <LongLi>
+                  유성언니여성의원 성소수자 클리닉은 트랜스젠더 및 성소수자
+                  분들을 위한 전문 진료를 제공합니다.{" "}
+                </LongLi>
+                <LongLi>
+                  주로 호르몬 치료, 관련 혈액검사 모니터링, 상담을 통해 안전하고
+                  지속 가능한 건강관리를 지원합니다.
+                </LongLi>
+              </List>
+              <img src={lgbt_img} alt="성소수자" />
+            </Content>
+          </Box>
 
-        <Box
-          ref={(el) => setBoxRef(el, 3)}
-          data-index="3"
-          $isVisible={visibleBoxes.has(3)}
-          $direction="left"
-        >
-          <Title>인터내셔널 클리닉</Title>
-          <PinkHr />
-          <LeftContent>
-            <img src={international_img} alt="인터내셔널" />
-            <List>
-              <LongLi>
-                유성언니여성의원 인터내셔널 클리닉은 외국인 환자분들을 위한 영어
-                진료 서비스를 제공합니다.
-              </LongLi>
-              <LongLi>
-                {" "}
-                산부인과 전문의가 간단한 부인과 질환 및 산과 관련 진료를
-                친절하고 정확하게 진행합니다.
-              </LongLi>
-            </List>
-          </LeftContent>
-        </Box>
-      </Section>
-      <VisualFooter />
-    </Container>
+          <Box
+            ref={(el) => setBoxRef(el, 3)}
+            data-index="3"
+            $isVisible={visibleBoxes.has(3)}
+            $direction="left"
+          >
+            <Title>인터내셔널 클리닉</Title>
+            <PinkHr />
+            <LeftContent>
+              <img src={international_img} alt="인터내셔널" />
+              <List>
+                <LongLi>
+                  유성언니여성의원 인터내셔널 클리닉은 외국인 환자분들을 위한
+                  영어 진료 서비스를 제공합니다.
+                </LongLi>
+                <LongLi>
+                  {" "}
+                  산부인과 전문의가 간단한 부인과 질환 및 산과 관련 진료를
+                  친절하고 정확하게 진행합니다.
+                </LongLi>
+              </List>
+            </LeftContent>
+          </Box>
+        </Section>
+        <VisualFooter />
+      </Container>
+    </>
   );
 };
 
