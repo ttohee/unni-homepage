@@ -6,7 +6,6 @@ import Footer from "./components/layout/Footer";
 import Clinics from "./pages/Clinics";
 import MedicalStaff from "./pages/MedicalStaff";
 import ScrollToTop from "./components/ScrollToTop";
-import { Helmet } from "react-helmet";
 
 function Layout() {
   return (
