@@ -16,7 +16,7 @@
 - **Vite**: 빠른 번들링과 개발 환경을 위해 사용
 - **React**: 컴포넌트 기반 UI 개발
 - **TypeScript**: 정적 타입으로 안정적인 코드 작성
-- **emotion**: CSS-in-JS 방식으로 컴포넌트 스타일링
+- **styled-component**: CSS-in-JS 방식으로 컴포넌트 스타일링
 
 ---
 
