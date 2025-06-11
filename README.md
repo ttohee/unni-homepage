@@ -1,54 +1,27 @@
-# React + TypeScript + Vite
+# 유성언니여성의원 홈페이지
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**함께 건강한 삶을, 유성언니여성의원입니다.**
 
-Currently, two official plugins are available:
+유성언니여성의원은 대전 유성구에 위치한 여성 전문 클리닉으로,  
+산부인과, 건강증진 클리닉, 성소수자 클리닉, International Clinic 등  
+다양한 진료과목을 통해 여성의 건강한 삶을 함께 만들어 갑니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+홈페이지는 병원 방문 전 병원 분위기와 진료 내용을 확인할 수 있도록 구성되어 있으며,  
+의료진 소개와 진료과목, 위치 정보까지 직관적으로 확인할 수 있도록 설계되어 있습니다.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔧 기술 스택
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Vite**: 빠른 번들링과 개발 환경을 위해 사용
+- **React**: 컴포넌트 기반 UI 개발
+- **TypeScript**: 정적 타입으로 안정적인 코드 작성
+- **emotion**: CSS-in-JS 방식으로 컴포넌트 스타일링
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📁 프로젝트 구조 및 목적
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- 병원의 진료 과목, 의료진, 위치 정보를 간결하게 제공
+- 사용자 중심의 UI/UX 구성
+- 모바일 및 데스크탑 환경 최적화
